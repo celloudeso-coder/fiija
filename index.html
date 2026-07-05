@@ -3,112 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIIJA 2026 - Festival International de l'Intégration de la Jeunesse Africaine</title>
+    <title>FIIJA 2026 — Festival International de l'Intégration de la Jeunesse Africaine</title>
+    <meta name="description" content="FIIJA 2026 à Conakry : la plus grande plateforme panafricaine de mobilisation, d'intégration et de coopération de la jeunesse africaine. Première édition, mai 2026.">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity .7s ease, transform .7s ease;
-        }
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .35s ease;
-        }
-        .mobile-menu.open { max-height: 420px; }
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
-            backdrop-filter: blur(14px);
-        }
-        .highlight-card {
-            transition: background-color .35s ease, box-shadow .35s ease, transform .35s ease;
-        }
-        .highlight-card.is-active {
-            background: rgba(197, 155, 39, .18);
-            box-shadow: inset 0 0 0 1px rgba(197, 155, 39, .42);
-            transform: translateY(-3px);
-        }
-        .hero-logo {
-            animation: heroFloat 6s ease-in-out infinite;
-        }
-        @keyframes heroFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-        .hero-glow {
-            animation: heroPulse 5s ease-in-out infinite;
-        }
-        @keyframes heroPulse {
-            0%, 100% { opacity: .35; transform: scale(1); }
-            50% { opacity: .6; transform: scale(1.08); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .highlight-card.is-active {
-                transform: none;
-            }
-            .hero-logo,
-            .hero-glow {
-                animation: none;
-            }
-            * {
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="bg-[#F8F9FA] text-gray-800 antialiased">
+<body data-page="accueil" class="bg-[#F8F9FA] text-gray-800 antialiased">
 
-    <div id="scrollProgress" class="fixed left-0 top-0 z-[60] h-1 w-0 bg-[#C59B27] transition-[width] duration-150"></div>
-
-    <header class="sticky top-0 z-50 bg-[#063227] text-white shadow-lg border-b border-b-[#C59B27]/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="Logo.png" alt="Logo FIIJA" class="h-14 w-14 object-contain rounded-full border border-[#C59B27]" onerror="this.style.display='none'">
-                <span class="font-serif text-2xl font-bold tracking-wider text-[#C59B27]">FIIJA</span>
-            </div>
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
-                <a href="#propos" class="hover:text-[#C59B27] transition-colors">À Propos</a>
-                <a href="#piliers" class="hover:text-[#C59B27] transition-colors">Piliers</a>
-                <a href="#edition" class="hover:text-[#C59B27] transition-colors">Éditions</a>
-                <a href="#programme" class="hover:text-[#C59B27] transition-colors">Programmes</a>
-                <a href="#contact" class="hover:text-[#C59B27] transition-colors">Contact</a>
-            </nav>
-            <div class="flex items-center gap-4">
-                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-block border border-[#C59B27] text-[#C59B27] hover:bg-[#C59B27] hover:text-[#063227] px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Galerie</a>
-                <a href="https://forms.gle/igxkorvhSuzKMPHD8" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex bg-[#C59B27] text-[#063227] hover:bg-white hover:text-[#063227] px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-md">Participer</a>
-                <button id="menuToggle" type="button" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-[#C59B27] transition hover:bg-white/10" aria-label="Ouvrir le menu" aria-controls="mobileMenu" aria-expanded="false">
-                    <span class="menu-icon text-2xl leading-none">☰</span>
-                </button>
-            </div>
-        </div>
-        <div id="mobileMenu" class="mobile-menu md:hidden border-t border-white/10 bg-[#04221A]">
-            <nav class="max-w-7xl mx-auto px-4 py-4 grid gap-2 text-sm font-semibold">
-                <a href="#propos" class="mobile-link rounded-xl px-4 py-3 hover:bg-white/10">À Propos</a>
-                <a href="#piliers" class="mobile-link rounded-xl px-4 py-3 hover:bg-white/10">Piliers</a>
-                <a href="#edition" class="mobile-link rounded-xl px-4 py-3 hover:bg-white/10">Éditions</a>
-                <a href="#programme" class="mobile-link rounded-xl px-4 py-3 hover:bg-white/10">Programmes</a>
-                <a href="#contact" class="mobile-link rounded-xl px-4 py-3 hover:bg-white/10">Contact</a>
-                <a href="https://forms.gle/igxkorvhSuzKMPHD8" target="_blank" rel="noopener noreferrer" class="mt-2 rounded-xl bg-[#C59B27] px-4 py-3 text-center text-[#063227]">Participer</a>
-            </nav>
-        </div>
-    </header>
-
+    <!-- ============ HÉROS ============ -->
     <section class="relative bg-gradient-to-b from-[#063227] via-[#063227] to-[#04221A] text-white overflow-hidden">
         <div class="hero-glow pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[520px] w-[520px] rounded-full bg-[#C59B27]/20 blur-3xl"></div>
         <div class="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#0d5a45]/40 blur-3xl"></div>
@@ -118,7 +27,7 @@
 
             <div class="relative mx-auto mb-8 w-40 sm:w-48 lg:w-56">
                 <div class="hero-glow absolute inset-0 -z-10 rounded-full bg-[#C59B27]/30 blur-2xl"></div>
-                <img src="Logo.png" alt="Logo Action pour l'Éducation Citoyenne — FIIJA"
+                <img src="assets/logo.png" alt="Logo Action pour l'Éducation Citoyenne — FIIJA"
                      class="hero-logo relative w-full aspect-square object-contain rounded-full ring-4 ring-[#C59B27]/40 shadow-2xl"
                      onerror="this.style.display='none'">
             </div>
@@ -134,36 +43,19 @@
                 « Construire ensemble les ponts de l'intégration, pour une jeunesse africaine unie et rayonnante »
             </p>
 
-            <div class="glass-panel mx-auto mb-10 grid max-w-3xl grid-cols-2 gap-3 rounded-2xl border border-white/10 p-3 text-left shadow-2xl sm:grid-cols-4">
-                <div class="highlight-card is-active rounded-xl bg-white/10 p-4 text-center">
-                    <p class="font-serif text-3xl font-black text-[#C59B27]">4</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-300">Jours</p>
-                </div>
-                <div class="highlight-card rounded-xl bg-white/10 p-4 text-center">
-                    <p class="font-serif text-3xl font-black text-[#C59B27]">5</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-300">Piliers</p>
-                </div>
-                <div class="highlight-card rounded-xl bg-white/10 p-4 text-center">
-                    <p class="font-serif text-3xl font-black text-[#C59B27]">26</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-300">Pays</p>
-                </div>
-                <div class="highlight-card rounded-xl bg-white/10 p-4 text-center">
-                    <p class="font-serif text-3xl font-black text-[#C59B27]">1</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-300">Organisation</p>
-                </div>
-            </div>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="https://forms.gle/igxkorvhSuzKMPHD8" target="_blank" rel="noopener noreferrer" class="bg-[#C59B27] text-[#063227] hover:bg-white font-semibold px-8 py-4 rounded-full transition-all shadow-lg">S'inscrire / Participer</a>
-                <a href="#propos" class="border border-white/40 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all">En savoir plus</a>
+                <a href="edition.html" class="border border-white/40 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all">Découvrir l'édition 2026</a>
             </div>
         </div>
     </section>
 
+    <!-- ============ BANDEAU CHIFFRES ============ -->
     <section class="bg-[#C59B27] text-[#063227] py-8 shadow-inner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:divide-x divide-[#063227]/20">
                 <div>
-                    <p class="counter font-serif text-4xl md:text-5xl font-black mb-1" data-target="30">0+</p>
+                    <p class="counter font-serif text-4xl md:text-5xl font-black mb-1" data-target="26">0+</p>
                     <p class="text-xs font-bold uppercase tracking-wider opacity-90">Pays Représentés</p>
                 </div>
                 <div>
@@ -171,328 +63,172 @@
                     <p class="text-xs font-bold uppercase tracking-wider opacity-90">Jeunes Leaders</p>
                 </div>
                 <div>
-                    <p class="counter font-serif text-4xl md:text-5xl font-black mb-1" data-target="10">0+</p>
-                    <p class="text-xs font-bold uppercase tracking-wider opacity-90">Organisations</p>
+                    <p class="counter font-serif text-4xl md:text-5xl font-black mb-1" data-target="5">0+</p>
+                    <p class="text-xs font-bold uppercase tracking-wider opacity-90">Piliers Stratégiques</p>
                 </div>
                 <div>
-                    <p class="counter font-serif text-4xl md:text-5xl font-black mb-1" data-target="50">0+</p>
-                    <p class="text-xs font-bold uppercase tracking-wider opacity-90">Partenaires</p>
+                    <p class="counter font-serif text-4xl md:text-5xl font-black mb-1" data-target="4">0+</p>
+                    <p class="text-xs font-bold uppercase tracking-wider opacity-90">Jours d'Immersion</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="propos" class="py-20 bg-white reveal">
+    <!-- ============ VISION & DEVISE ============ -->
+    <section class="py-20 bg-white reveal">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Notre Mission</span>
+            <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Notre Vision</span>
             <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227] mb-6">Un festival au service de l'intégration africaine</h2>
-            <div class="bg-[#F8F9FA] p-6 sm:p-8 rounded-2xl border-l-4 border-[#C59B27] text-left mb-8 shadow-sm">
-                <p class="text-lg text-gray-700 leading-relaxed italic">
-                    "Faire du FIIJA la plus grande plateforme panafricaine de mobilisation, d'intégration et de coopération des jeunes, afin de bâtir une Afrique unie, souveraine, innovante et prospère."
-                </p>
-            </div>
-            <div class="inline-block bg-[#063227] text-white px-6 py-3 rounded-xl">
-                <span class="text-xs uppercase tracking-wider text-[#C59B27] font-bold block">Devise</span>
-                <p class="font-serif text-md font-medium">« Une jeunesse intégrée pour une Afrique souveraine, pacifique et prospère. »</p>
+            <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+                Faire du FIIJA la plus grande plateforme panafricaine de mobilisation, d'intégration et de coopération des jeunes, afin de bâtir une Afrique unie, souveraine, innovante et prospère.
+            </p>
+            <div class="inline-block bg-[#063227] text-white px-6 py-4 rounded-xl">
+                <span class="text-xs uppercase tracking-wider text-[#C59B27] font-bold block mb-1">Devise</span>
+                <p class="font-serif italic text-md md:text-lg text-[#e9d7a1]">« Une jeunesse intégrée pour une Afrique souveraine, pacifique et prospère. »</p>
             </div>
         </div>
     </section>
 
-    <section id="piliers" class="py-20 bg-[#F8F9FA] reveal">
+    <!-- ============ PORTAIL : EXPLORER LE FIIJA ============ -->
+    <section class="py-20 bg-[#F8F9FA] reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227]">Les 5 Piliers Stratégiques</h2>
-                <p class="text-gray-500 mt-2">Les fondements de notre action pour l'avenir du continent</p>
+            <div class="text-center mb-14">
+                <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Explorer</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227]">Découvrir le FIIJA</h2>
+                <p class="text-gray-500 mt-2">Quatre univers pour comprendre notre mouvement continental</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-7 sm:p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all group">
-                    <div class="text-3xl mb-4 bg-[#063227]/5 w-12 h-12 flex items-center justify-center rounded-xl text-[#063227]">🕊️</div>
-                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-3">1. Paix & Gouvernance</h3>
-                    <p class="text-sm text-gray-600 mb-4">Former une jeunesse actrice de la démocratie, de la bonne gouvernance et du dialogue civique.</p>
-                    <span class="text-xs font-semibold text-[#C59B27] bg-[#C59B27]/10 px-3 py-1 rounded-full">Parlement des Jeunes</span>
-                </div>
-                <div class="bg-white p-7 sm:p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all group">
-                    <div class="text-3xl mb-4 bg-[#063227]/5 w-12 h-12 flex items-center justify-center rounded-xl text-[#063227]">🤝</div>
-                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-3">2. Intégration & Coopération</h3>
-                    <p class="text-sm text-gray-600 mb-4">Briser les barrières linguistiques et politiques pour bâtir l'OIIJA et faire vivre l'unité.</p>
-                    <span class="text-xs font-semibold text-[#C59B27] bg-[#C59B27]/10 px-3 py-1 rounded-full">Charte de Conakry</span>
-                </div>
-                <div class="bg-white p-7 sm:p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all group">
-                    <div class="text-3xl mb-4 bg-[#063227]/5 w-12 h-12 flex items-center justify-center rounded-xl text-[#063227]">💡</div>
-                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-3">3. Entrepreneuriat & Innovation</h3>
-                    <p class="text-sm text-gray-600 mb-4">Stimuler la transformation économique à travers les hackathons, pitchs et rencontres B2B.</p>
-                    <span class="text-xs font-semibold text-[#C59B27] bg-[#C59B27]/10 px-3 py-1 rounded-full">Hackathon & B2B</span>
-                </div>
-                <div class="bg-white p-7 sm:p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all group">
-                    <div class="text-3xl mb-4 bg-[#063227]/5 w-12 h-12 flex items-center justify-center rounded-xl text-[#063227]">🎭</div>
-                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-3">4. Culture, Sport & Identité</h3>
-                    <p class="text-sm text-gray-600 mb-4">Valoriser notre patrimoine commun comme puissant levier de cohésion sociale et de fierté.</p>
-                    <span class="text-xs font-semibold text-[#C59B27] bg-[#C59B27]/10 px-3 py-1 rounded-full">Village Culturel</span>
-                </div>
-                <div class="bg-white p-7 sm:p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all group lg:col-span-1 md:col-span-2">
-                    <div class="text-3xl mb-4 bg-[#063227]/5 w-12 h-12 flex items-center justify-center rounded-xl text-[#063227]">🌍</div>
-                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-3">5. Leadership & Numérique</h3>
-                    <p class="text-sm text-gray-600 mb-4">Préparer les leaders du XXIᵉ siècle aux enjeux de l'IA et du développement durable.</p>
-                    <span class="text-xs font-semibold text-[#C59B27] bg-[#C59B27]/10 px-3 py-1 rounded-full">Intelligence Artificielle</span>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="apec.html" class="card-hover group bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col">
+                    <div class="text-3xl mb-5 bg-[#063227]/5 w-14 h-14 flex items-center justify-center rounded-2xl">🏛️</div>
+                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-2">À Propos</h3>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow">APEC Internationale, sa mission, sa gouvernance et l'organe permanent OIIJA.</p>
+                    <span class="text-sm font-semibold text-[#C59B27] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Découvrir →</span>
+                </a>
+                <a href="piliers.html" class="card-hover group bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col">
+                    <div class="text-3xl mb-5 bg-[#063227]/5 w-14 h-14 flex items-center justify-center rounded-2xl">🗂️</div>
+                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-2">Les 5 Piliers</h3>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow">Vision, objectifs et actions des cinq axes stratégiques du festival.</p>
+                    <span class="text-sm font-semibold text-[#C59B27] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Découvrir →</span>
+                </a>
+                <a href="edition.html" class="card-hover group bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col">
+                    <div class="text-3xl mb-5 bg-[#063227]/5 w-14 h-14 flex items-center justify-center rounded-2xl">🌍</div>
+                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-2">Édition 2026</h3>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow">Conakry, mai 2026 : l'acte fondateur réunissant 200 jeunes de 26 pays.</p>
+                    <span class="text-sm font-semibold text-[#C59B27] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Découvrir →</span>
+                </a>
+                <a href="programme.html" class="card-hover group bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col">
+                    <div class="text-3xl mb-5 bg-[#063227]/5 w-14 h-14 flex items-center justify-center rounded-2xl">📅</div>
+                    <h3 class="font-serif text-xl font-bold text-[#063227] mb-2">Programme</h3>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow">Le déroulé officiel sur 4 jours et les activités transversales.</p>
+                    <span class="text-sm font-semibold text-[#C59B27] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Découvrir →</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="edition" class="py-20 bg-white border-b border-gray-100 reveal">
+    <!-- ============ APERÇU DES PILIERS ============ -->
+    <section class="py-20 bg-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                <div>
-                    <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Acte Fondateur</span>
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227] mb-6">Première Édition : Conakry 2026 🇬🇳</h2>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
-                        Portée avec fierté par la <strong>République de Guinée</strong>, cette édition inaugurale consacre Conakry comme la capitale de la jeunesse africaine engagée. 
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex gap-4">
-                            <span class="text-[#C59B27] font-bold">✓</span>
-                            <p class="text-sm text-gray-600"><strong>Lancement de l'OIIJA :</strong> Organisation pérenne de coordination.</p>
-                        </div>
-                        <div class="flex gap-4">
-                            <span class="text-[#C59B27] font-bold">✓</span>
-                            <p class="text-sm text-gray-600"><strong>Adoption de la Charte :</strong> Signature officielle du cadre d'unité.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-12 lg:mt-0 bg-[#063227] p-6 sm:p-8 rounded-3xl text-white shadow-xl">
-                    <h3 class="font-serif text-2xl text-[#C59B27] font-bold mb-4">Articulation Institutionnelle</h3>
-                    <p class="text-sm text-gray-300 leading-relaxed mb-4">
-                        Les 5 piliers forment l'architecture directe des commissions permanentes de l'<strong>OIIJA</strong>. Le festival annuel sert de point de rassemblement, tandis que l'OIIJA en assure le déploiement opérationnel au quotidien.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="programme" class="py-20 bg-[#F8F9FA] reveal">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227]">Le Programme Officiel</h2>
-                <p class="text-gray-500 mt-2">4 Jours d'immersion totale à Conakry</p>
+                <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Nos fondements</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227]">Les 5 Piliers Stratégiques</h2>
+                <p class="text-gray-500 mt-2">Les axes qui structurent notre action pour l'avenir du continent</p>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-10 bg-white p-2 rounded-2xl shadow-sm border border-gray-100" role="tablist" aria-label="Programme par jour">
-                <button onclick="switchTab('jour1')" id="btn-jour1" class="tab-btn px-4 sm:px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all bg-[#C59B27] text-white" role="tab" aria-controls="jour1" aria-selected="true">
-                    Jour 1 : Unité
-                </button>
-                <button onclick="switchTab('jour2')" id="btn-jour2" class="tab-btn px-4 sm:px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all bg-white text-gray-600 hover:text-[#063227]" role="tab" aria-controls="jour2" aria-selected="false">
-                    Jour 2 : Gouvernance
-                </button>
-                <button onclick="switchTab('jour3')" id="btn-jour3" class="tab-btn px-4 sm:px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all bg-white text-gray-600 hover:text-[#063227]" role="tab" aria-controls="jour3" aria-selected="false">
-                    Jour 3 : Économie
-                </button>
-                <button onclick="switchTab('jour4')" id="btn-jour4" class="tab-btn px-4 sm:px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all bg-white text-gray-600 hover:text-[#063227]" role="tab" aria-controls="jour4" aria-selected="false">
-                    Jour 4 : Institution
-                </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <a href="piliers.html#pilier-1" class="card-hover bg-[#F8F9FA] rounded-2xl border border-gray-100 p-6 text-center block">
+                    <div class="text-3xl mb-3">🕊️</div>
+                    <h3 class="font-serif text-base font-bold text-[#063227] mb-1">Paix &amp; Gouvernance</h3>
+                    <p class="text-xs text-gray-500">Démocratie &amp; citoyenneté active</p>
+                </a>
+                <a href="piliers.html#pilier-2" class="card-hover bg-[#F8F9FA] rounded-2xl border border-gray-100 p-6 text-center block">
+                    <div class="text-3xl mb-3">🤝</div>
+                    <h3 class="font-serif text-base font-bold text-[#063227] mb-1">Intégration</h3>
+                    <p class="text-xs text-gray-500">Coopération panafricaine</p>
+                </a>
+                <a href="piliers.html#pilier-3" class="card-hover bg-[#F8F9FA] rounded-2xl border border-gray-100 p-6 text-center block">
+                    <div class="text-3xl mb-3">💡</div>
+                    <h3 class="font-serif text-base font-bold text-[#063227] mb-1">Entrepreneuriat</h3>
+                    <p class="text-xs text-gray-500">Innovation &amp; économie</p>
+                </a>
+                <a href="piliers.html#pilier-4" class="card-hover bg-[#F8F9FA] rounded-2xl border border-gray-100 p-6 text-center block">
+                    <div class="text-3xl mb-3">🎭</div>
+                    <h3 class="font-serif text-base font-bold text-[#063227] mb-1">Culture &amp; Identité</h3>
+                    <p class="text-xs text-gray-500">Patrimoine &amp; sport</p>
+                </a>
+                <a href="piliers.html#pilier-5" class="card-hover bg-[#F8F9FA] rounded-2xl border border-gray-100 p-6 text-center block">
+                    <div class="text-3xl mb-3">🌍</div>
+                    <h3 class="font-serif text-base font-bold text-[#063227] mb-1">Leadership</h3>
+                    <p class="text-xs text-gray-500">Numérique &amp; durable</p>
+                </a>
             </div>
-
-            <div id="jour1" class="tab-content space-y-4" role="tabpanel" aria-labelledby="btn-jour1">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-bold text-green-500 uppercase tracking-widest block mb-1">Matinée</span>
-                        <h4 class="font-serif text-xl font-bold text-[#063227]">Cérémonie Officielle d'Ouverture</h4>
-                        <p class="text-sm text-gray-500 mt-1">Accueil des délégations des 26 pays africains et allocutions ministérielles guinéennes.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-amber-500 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-bold text-amber-500 uppercase tracking-widest block mb-1">Après-Midi</span>
-                        <h4 class="font-serif text-xl font-bold text-[#063227]">Panel Inaugural de Haut Niveau</h4>
-                        <p class="text-sm text-gray-500 mt-1">L'avenir de la jeunesse face aux défis actuels (Ministres de la Jeunesse, UA, Partenaires).</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-[#C59B27] flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-bold text-[#C59B27] uppercase tracking-widest block mb-1">Soirée</span>
-                        <h4 class="font-serif text-xl font-bold text-[#063227]">Nuit des Cultures Africaines</h4>
-                        <p class="text-sm text-gray-500 mt-1">Défilé traditionnel panafricain et prestations artistiques d'intégration.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="jour2" class="tab-content space-y-4 hidden" role="tabpanel" aria-labelledby="btn-jour2">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
-                    <span class="text-xs font-bold text-green-500 uppercase tracking-widest block mb-1">Matinée</span>
-                    <h4 class="font-serif text-xl font-bold text-[#063227]">Masterclass Leadership & Simulation</h4>
-                    <p class="text-sm text-gray-500 mt-1">Gouvernance citoyenne active suivie de la simulation du Parlement de la Jeunesse Africaine.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-amber-500">
-                    <span class="text-xs font-bold text-amber-500 uppercase tracking-widest block mb-1">Après-Midi</span>
-                    <h4 class="font-serif text-xl font-bold text-[#063227]">Dialogue Intergénérationnel</h4>
-                    <p class="text-sm text-gray-500 mt-1">Échanges constructifs entre jeunes leaders, anciens dirigeants et experts de la paix.</p>
-                </div>
-            </div>
-
-            <div id="jour3" class="tab-content space-y-4 hidden" role="tabpanel" aria-labelledby="btn-jour3">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
-                    <span class="text-xs font-bold text-green-500 uppercase tracking-widest block mb-1">Matinée</span>
-                    <h4 class="font-serif text-xl font-bold text-[#063227]">Forum de l'Intégration & Expo FIIJA</h4>
-                    <p class="text-sm text-gray-500 mt-1">Ouverture de la foire des projets jeunes et stands des startups africaines.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-amber-500">
-                    <span class="text-xs font-bold text-amber-500 uppercase tracking-widest block mb-1">Après-Midi</span>
-                    <h4 class="font-serif text-xl font-bold text-[#063227]">Hackathon Panafricain & B2B</h4>
-                    <p class="text-sm text-gray-500 mt-1">Développement de solutions digitales et sessions de pitch devant les investisseurs.</p>
-                </div>
-            </div>
-
-            <div id="jour4" class="tab-content space-y-4 hidden" role="tabpanel" aria-labelledby="btn-jour4">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
-                    <span class="text-xs font-bold text-green-500 uppercase tracking-widest block mb-1">Matinée</span>
-                    <h4 class="font-serif text-xl font-bold text-[#063227]">Adoption de la Charte de Conakry</h4>
-                    <p class="text-sm text-gray-500 mt-1">Lecture officielle, amendements et signature collective par les représentants.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-amber-500">
-                    <span class="text-xs font-bold text-amber-500 uppercase tracking-widest block mb-1">Après-Midi</span>
-                    <h4 class="font-serif text-xl font-bold text-[#063227]">Lancement de l'OIIJA & Clôture</h4>
-                    <p class="text-sm text-gray-500 mt-1">Installation officielle de l'organe permanent, remise des prix de l'innovation et show final.</p>
-                </div>
+            <div class="text-center mt-10">
+                <a href="piliers.html" class="inline-flex items-center gap-2 bg-[#063227] text-white hover:bg-[#04221A] font-semibold px-6 py-3 rounded-full transition-all">Explorer les 5 piliers en détail →</a>
             </div>
         </div>
     </section>
 
+    <!-- ============ ÉDITION 2026 ============ -->
+    <section class="py-20 bg-[#F8F9FA] border-y border-gray-100 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            <div>
+                <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Acte Fondateur</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#063227] mb-6">Première Édition : Conakry 2026 🇬🇳</h2>
+                <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                    Portée avec fierté par la <strong>République de Guinée</strong>, cette édition inaugurale (mai 2026) consacre Conakry comme la capitale de la jeunesse africaine engagée : plus de 200 jeunes leaders issus de 26 pays.
+                </p>
+                <div class="space-y-3 mb-8">
+                    <div class="flex gap-3"><span class="text-[#C59B27] font-bold">✓</span><p class="text-sm text-gray-600"><strong>Lancement de l'OIIJA</strong> — organe permanent de coordination.</p></div>
+                    <div class="flex gap-3"><span class="text-[#C59B27] font-bold">✓</span><p class="text-sm text-gray-600"><strong>Adoption de la Charte de Conakry</strong> — cadre fondateur de l'unité.</p></div>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a href="edition.html" class="bg-[#063227] text-white hover:bg-[#04221A] font-semibold px-6 py-3 rounded-full transition-all">En savoir plus</a>
+                    <a href="programme.html" class="border border-[#063227]/30 hover:border-[#063227] text-[#063227] font-semibold px-6 py-3 rounded-full transition-all">Voir le programme</a>
+                </div>
+            </div>
+            <div class="mt-12 lg:mt-0 bg-[#063227] p-6 sm:p-8 rounded-3xl text-white shadow-xl">
+                <h3 class="font-serif text-2xl text-[#C59B27] font-bold mb-4">Articulation Institutionnelle</h3>
+                <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                    Les 5 piliers forment l'architecture des commissions permanentes de l'<strong>OIIJA</strong>. Le festival annuel sert de point de rassemblement, tandis que l'OIIJA en assure le déploiement opérationnel au quotidien.
+                </p>
+                <a href="apec.html#oiija" class="inline-flex items-center gap-2 text-sm font-semibold text-[#C59B27] hover:text-white transition-colors">Découvrir APEC &amp; l'OIIJA →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ VALEURS ============ -->
     <section class="py-16 bg-white text-center reveal">
         <div class="max-w-4xl mx-auto px-4">
-            <h3 class="font-serif text-2xl text-[#063227] font-bold mb-8">Nos Valeurs Fondamentales</h3>
+            <span class="text-[#C59B27] text-xs font-bold uppercase tracking-widest block mb-2">Ce qui nous guide</span>
+            <h3 class="font-serif text-2xl md:text-3xl text-[#063227] font-bold mb-8">Nos Valeurs Fondamentales</h3>
             <div class="flex flex-wrap justify-center gap-3">
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Panafricanisme</span>
-                <span class="bg-[#063227] text-[#C59B27] text-xs font-semibold px-4 py-2 rounded-full">Unité</span>
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Solidarité</span>
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Excellence</span>
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Innovation</span>
-                <span class="bg-[#C59B27]/20 text-[#063227] text-xs font-semibold px-4 py-2 rounded-full">Diversité Culturelle</span>
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Inclusion</span>
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Citoyenneté</span>
-                <span class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Leadership</span>
+                <span class="bg-[#063227] text-[#C59B27] text-xs font-semibold px-4 py-2 rounded-full">Panafricanisme</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Unité</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Solidarité</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Paix</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Excellence</span>
+                <span class="bg-[#C59B27]/20 text-[#063227] text-xs font-semibold px-4 py-2 rounded-full">Innovation</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Intégrité</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Diversité culturelle</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Inclusion</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Leadership</span>
+                <span class="bg-[#F8F9FA] text-gray-700 text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Développement durable</span>
+            </div>
+            <a href="piliers.html#valeurs" class="inline-block mt-8 text-sm font-semibold text-[#C59B27] hover:underline">Voir toutes nos valeurs →</a>
+        </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section class="py-20 bg-gradient-to-br from-[#063227] to-[#04221A] text-white text-center reveal">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#C59B27] mb-4">Rejoignez le mouvement</h2>
+            <p class="text-gray-300 mb-8 leading-relaxed">Devenez acteur du changement générationnel africain en prenant part au FIIJA 2026 et à l'OIIJA.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://forms.gle/igxkorvhSuzKMPHD8" target="_blank" rel="noopener noreferrer" class="bg-[#C59B27] text-[#063227] hover:bg-white font-semibold px-8 py-4 rounded-full transition-all shadow-lg">S'inscrire maintenant</a>
+                <a href="contact.html" class="border border-white/40 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all">Nous contacter</a>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-[#04221A] text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-white/10 pb-12">
-            <div>
-                <h3 class="font-serif text-2xl text-[#C59B27] font-bold mb-4">Rejoignez le Mouvement</h3>
-                <p class="text-sm text-gray-400 max-w-sm leading-relaxed">
-                    Devenez acteur du changement générationnel africain en prenant part aux projets transfrontaliers et à l'OIIJA.
-                </p>
-            </div>
-            <div class="space-y-4">
-                <h4 class="text-xs uppercase tracking-widest text-[#C59B27] font-bold">Contacts Officiels</h4>
-                <div class="text-sm text-gray-300">
-                    <p class="mb-1">📧 E-mail : <a href="mailto:apecguinee2023@gmail.com" class="text-white hover:underline">apecguinee2023@gmail.com</a></p>
-                    <p>📞 Tél / WhatsApp : <a href="tel:+224628484784" class="text-white hover:underline">+224 628 48 47 84</a> / <a href="tel:+224627534249" class="text-white hover:underline">+224 627 53 42 49</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row justify-between text-xs text-gray-500">
-            <p>© 2026 FIIJA & APEC Guinée. Tous droits réservés.</p>
-            <p class="mt-2 sm:mt-0">Conakry, République de Guinée.</p>
-        </div>
-    </footer>
-
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIcon = document.querySelector('.menu-icon');
-        const progress = document.getElementById('scrollProgress');
-        const highlightCards = document.querySelectorAll('.highlight-card');
-
-        menuToggle.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', String(isOpen));
-            menuIcon.textContent = isOpen ? '×' : '☰';
-        });
-
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuIcon.textContent = '☰';
-            });
-        });
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-[#C59B27]', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-600', 'hover:text-[#063227]');
-                btn.setAttribute('aria-selected', 'false');
-            });
-            
-            const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.add('bg-[#C59B27]', 'text-white');
-            activeBtn.classList.remove('bg-white', 'text-gray-600', 'hover:text-[#063227]');
-            activeBtn.setAttribute('aria-selected', 'true');
-        }
-
-        function updateProgress() {
-            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-            const percent = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-            progress.style.width = `${percent}%`;
-        }
-
-        let activeHighlight = 0;
-        function rotateHighlights() {
-            highlightCards[activeHighlight].classList.remove('is-active');
-            activeHighlight = (activeHighlight + 1) % highlightCards.length;
-            highlightCards[activeHighlight].classList.add('is-active');
-        }
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12 });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                const counter = entry.target;
-                const target = Number(counter.dataset.target);
-                const duration = 1200;
-                const start = performance.now();
-
-                function tick(now) {
-                    const progress = Math.min((now - start) / duration, 1);
-                    const value = Math.floor(target * (1 - Math.pow(1 - progress, 3)));
-                    counter.textContent = `${value}+`;
-                    if (progress < 1) requestAnimationFrame(tick);
-                }
-
-                requestAnimationFrame(tick);
-                counterObserver.unobserve(counter);
-            });
-        }, { threshold: 0.7 });
-
-        document.querySelectorAll('.counter').forEach(counter => counterObserver.observe(counter));
-        document.querySelectorAll('.tab-btn').forEach((button, index, buttons) => {
-            button.addEventListener('keydown', event => {
-                if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-                event.preventDefault();
-                const nextIndex = event.key === 'ArrowRight'
-                    ? (index + 1) % buttons.length
-                    : (index - 1 + buttons.length) % buttons.length;
-                buttons[nextIndex].focus();
-                switchTab(buttons[nextIndex].id.replace('btn-', ''));
-            });
-        });
-
-        updateProgress();
-        setInterval(rotateHighlights, 1800);
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        window.addEventListener('resize', updateProgress);
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 </html>
